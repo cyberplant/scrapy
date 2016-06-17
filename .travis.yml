@@ -42,7 +42,7 @@ deploy:
 
     - provider: bintray
       file_glob: true
-      file: ${HOME}/*deb
+      file: *deb
       user: luar
       key: "apikey"
       passphrase: "test"
