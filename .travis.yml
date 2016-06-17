@@ -8,12 +8,13 @@ branches:
     - /^\d\.\d+\.\d+(rc\d+|dev\d+)?$/
 env:
  - TOXENV=py27
- - TOXENV=precise
- - TOXENV=py33
- - TOXENV=py35
- - TOXENV=docs
+   # - TOXENV=precise
+   # - TOXENV=py33
+   # - TOXENV=py35
+   # - TOXENV=docs
 install:
  - pip install -U tox twine wheel codecov
+ - packaging/build.sh
 script: tox
 after_success:
   - codecov
@@ -27,23 +28,20 @@ cache:
   directories:
     - $HOME/.cache/pip
 deploy:
-  provider: pypi
-  distributions: "sdist bdist_wheel"
-  user: scrapy
-  password:
-    secure: JaAKcy1AXWXDK3LXdjOtKyaVPCSFoCGCnW15g4f65E/8Fsi9ZzDfmBa4Equs3IQb/vs/if2SVrzJSr7arN7r9Z38Iv1mUXHkFAyA3Ym8mThfABBzzcUWEQhIHrCX0Tdlx9wQkkhs+PZhorlmRS4gg5s6DzPaeA2g8SCgmlRmFfA=
-  on:
-    tags: true
-    repo: scrapy/scrapy
-    condition: "$TOXENV == py27 && $TRAVIS_TAG =~ ^[0-9]+[.][0-9]+[.][0-9]+(rc[0-9]+|dev[0-9]+)?$"
-  after_deploy:
-    packaging/build.sh
+    - provider: pypi
+      distributions: "sdist bdist_wheel"
+      user: cyberplant
+      password:
+        secure: hLCqOgySRZGOdJm4QCU5n5uHZMqI8jnC/U88vBN6Wx61QjcLo6n/Dc1mSgs6AJTV6pt6ROnxCJ5rHzbfLq8vpklOqH1FLEkPCEB7ojtC3U42gYdBMV0iNdB/gda2y6ke4jNivScnJ6pThAIpFA644ADEF2nyorOkdBxel9JyuXVciBx6o2qGKXaZphTP0SmfPcirJSxnwiYi5Xy4pFiR3BxIEGSTs+HKB+IXqL2aoaiuDmArnfHcbMDnGyVFsyBozWamKTbTrHn3cTR1vAiTkb9BVDnI9VZmQMkU7vJL6p4rIDjSE9IXhye0sLD+qAUKnQlKXGYAqIEu8CcCl3AJM/E1rAA1F895msZzsWVyNYPtFbZ96Cr0mgARmPhEzu/676mGlfEww71vQOovMFv0dCSUsPnDl7UOo3DnKpvKeuX40jjJkdMjvakFUuETi22nvLdQ5hSpgISjsCuKI+vwMgaMZWspRW56KGp0i0h/7vT6Afx4Wa95qN8tXTbhT679oq+sH9mOVdP1VXdCKg2mfcacac27bvV01+dHFfAIdY1EJylyxI+gNO7n1ffnGRoExlwxXVkl91dkIOpBAyigX56KSXZ3A7A9RRF6zqv2kPOCnfGGAgLjc/s8wOHEOSjfn7yaPOwK6MgV3QWwQvnm43X2tK9267W7wY7/RR7DXG4=
+      on:
+        tags: true
+        repo: cyberplant/scrapy
+        # condition: "$TOXENV == py27 && $TRAVIS_TAG =~ ^[0-9]+[.][0-9]+[.][0-9]+(rc[0-9]+|dev[0-9]+)?$"
 
-deploy:
-  provider: bintray
-  file_glob: true
-  file: ${HOME}/packaging/*deb
-  user: luar
-  key: "apikey"
-  passphrase: "test"
-  dry-run: true
+    - provider: bintray
+      file_glob: true
+      file: ${HOME}/packaging/*deb
+      user: luar
+      key: "apikey"
+      passphrase: "test"
+      dry-run: true
