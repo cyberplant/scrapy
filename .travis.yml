@@ -39,10 +39,9 @@ deploy:
         tags: true
         repo: cyberplant/scrapy
         # condition: "$TOXENV == py27 && $TRAVIS_TAG =~ ^[0-9]+[.][0-9]+[.][0-9]+(rc[0-9]+|dev[0-9]+)?$"
+
     - provider: bintray
-      file_glob: true
-      file: "*deb"
+      file: extras/bintray.conf
       user: luar
-      key: "apikey"
-      passphrase: "test"
-      dry-run: true
+      key: 
+        secure: "CQAVP19Qqf3M2hUXXtuKPQYlItCRe6z7GWhqWBpVd7bdcJNp6GNnd1wJafzc1LJOxp6QDz69cDxyxXmKRtaaTxeOB5W/oKNqJuuDd+D3yQtFT2Yw+rx/x/TrvGe4wZDkH4LpASoc0Wktyjj8F3JEn1hUadF4S6+FKYaboJaPH5wu7IZZRdI9B3ocfVwd0q3XQ/iLcaw0MyTQwhXJyQhVnCsgsKrAiFnh/3jLz/sCTqQ+lzEPWijJhestZF0WWQIAIbok/vVxBKu3xrfSDdF/j4KdzAV/7zNIy+2VvaDET0BfWoN9JjG+B5ZXIdueor1/wmkBccVAIV9SiP8pXixWq0O9LSdCHmpP5Vlchr74IqygeSnsXwmPDORMoPxMN7N5UKq9hbvF0QupzlwiknItWx5PGIZaXYpc5gweDjwiyo/LibVwIjTrK4janEArJh9hgCG5zd9avhDp2kcF6EMegFwBJDNIijo6XyhpFT+6gMGLUohC/A7NSUC8FXyve2Av1ATJ17nXQQGolN/2BlhsmiPYwMnXPf82cuoWf0PJHGtYyQs+Q3vw7RRl/gy6n+Gvnqlz0F4v93Tgrsyb7FTwR4uKDbLyBDLhYk1oVeEs2I4eaeaLksQnuUPY0eeB8BNCSdKXNYKkr2u2vUXDO43FkQJ7h95rcpBOgt5cLusVp2I="
